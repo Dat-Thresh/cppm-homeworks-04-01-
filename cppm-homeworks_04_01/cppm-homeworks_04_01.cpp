@@ -10,7 +10,8 @@ private:
     std::string street;
     std::string homeNumb;
     std::string apartment;
-public:
+ public:
+    
     //cеттеры
     void set_city(std::string city) { //устанавливает город в экземпляр класса
         this->city = city;
@@ -30,7 +31,12 @@ public:
     std::string get_hoomeNumb() { return homeNumb; }
     std::string get_apartment() { return apartment; }
 
-    
+    //склеивает одну строку из строки полей 
+    std::string make_Adress_in_one_string() {
+        std::string buffer;
+        buffer = city + ", " + street + ", " + homeNumb + ", " + apartment + "\n";
+        return buffer;
+    }
 };
 
 //возвращает считанный из файла элемент
@@ -40,12 +46,7 @@ std::string return_from_reader(std::ifstream& reader) {
     return buff;
 
 }
-//склеивает строку из полей одного элемента массива классов (адресов), чтобы не лепить это в основном коде
-std::string make_Adress_in_one_string(Adress& arr_adress) {
-    std::string buffer;
-    buffer = arr_adress.get_city() + ", " + arr_adress.get_street() + ", " + arr_adress.get_hoomeNumb() + ", " + arr_adress.get_apartment() + "\n";
-    return buffer;
-}
+
 
 
 int main()
@@ -73,7 +74,7 @@ int main()
     //записываем количество адресов
     writer << N << std::endl;
     for (int i = 0; i < N; i++) {
-        writer << make_Adress_in_one_string(arr_adress[i]);
+        writer << arr_adress[i].make_Adress_in_one_string();
     }
     writer.close();
     delete[] arr_adress;
