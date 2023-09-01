@@ -73,7 +73,7 @@ int main()
     }
     //записываем количество адресов
     writer << N << std::endl;
-    for (int i = 0; i < N; i++) {
+    for (int i = N -1; i >= 0; i--) {
         writer << arr_adress[i].make_Adress_in_one_string();
     }
     writer.close();
